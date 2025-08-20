@@ -15,30 +15,13 @@
       background: #0a0a0a;
       color: #e0e0e0;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    canvas#bgCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #0a0a0a;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 15px;
       text-align: center;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-      z-index: 5;
+      padding: 20px;
+      font-size: 1.5rem;
       color: #0ff;
-      font-size: 1.2rem;
       text-shadow: 0 0 10px #08f;
     }
 
@@ -48,8 +31,6 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 20px;
-      box-sizing: border-box;
     }
 
     .card {
@@ -65,7 +46,7 @@
       padding: 20px;
       transform: translateY(200px);
       opacity: 0;
-      position: relative;
+      position: absolute;
       z-index: 2;
     }
 
@@ -83,28 +64,72 @@
     }
 
     .machine {
-      width: 90%;
-      max-width: 380px;
-      height: 240px;
+      width: 360px;
+      height: 500px;
       background: #111;
       border-radius: 20px;
-      margin-top: 50px;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,255,255,0.4);
       border: 2px solid #0ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+      overflow: hidden;
     }
 
     .slot {
-      width: 70%;
-      max-width: 260px;
-      height: 25px;
+      width: 260px;
+      height: 30px;
       background: #0a0a0a;
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
       border-radius: 5px;
-      box-shadow: inset 0 0 10px #0ff;
+      box-shadow: inset 0 0 15px #0ff;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .slot-cover {
+      position: absolute;
+      top: 60px;
+      width: 260px;
+      height: 15px;
+      background: #111;
+      border-radius: 3px;
+      z-index: 4;
+      box-shadow: inset 0 0 10px #000;
+    }
+
+    .screen {
+      width: 220px;
+      height: 120px;
+      background: #0ff2;
+      border-radius: 10px;
+      box-shadow: inset 0 0 20px #0ff;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0ff;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .keypad {
+      width: 200px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .key {
+      background: #222;
+      border: 1px solid #0ff;
+      color: #0ff;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 8px #08f;
     }
 
     .offers {
@@ -125,89 +150,58 @@
       margin: 8px 0;
     }
 
-    .cta-btn {
-      display: inline-block;
+    .cta {
       margin-top: 20px;
-      padding: 12px 24px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #0ff;
+      background: transparent;
       border: 2px solid #0ff;
       border-radius: 30px;
-      background: transparent;
-      color: #0ff;
-      font-size: 1rem;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+      transition: 0.3s;
+      text-shadow: 0 0 10px #08f;
     }
 
-    .cta-btn:hover {
+    .cta:hover {
       background: #0ff;
-      color: #0a0a0a;
-      box-shadow: 0 0 25px #0ff;
+      color: #000;
+      box-shadow: 0 0 20px #0ff;
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      color: #777;
-      font-size: 0.9rem;
       position: relative;
     }
 
-    .back-to-top {
+    #backToTop {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 30px;
       background: #0ff;
-      color: #0a0a0a;
+      color: #000;
       border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
       cursor: pointer;
-      box-shadow: 0 0 20px #0ff;
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 20px #0ff;
     }
 
-    .back-to-top:hover {
-      box-shadow: 0 0 30px #0ff;
-      transform: translateY(-3px);
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: 90%;
-        height: 160px;
-        font-size: 0.9rem;
-      }
-
-      .number {
-        font-size: 1rem;
-      }
-
-      .machine {
-        height: 200px;
-      }
-
-      .cta-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-      }
+    /* Responsive */
+    @media(max-width: 768px) {
+      .card { width: 260px; height: 160px; }
+      .machine { width: 280px; height: 420px; }
+      .screen { width: 180px; height: 100px; }
+      .keypad { width: 160px; }
     }
   </style>
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
-  <header>
-    Experience the Future of Payments 🚀
-  </header>
+
+  <header>Experience the Future of Payments 🚀</header>
 
   <section>
     <div class="card">
@@ -220,6 +214,19 @@
   <section>
     <div class="machine">
       <div class="slot"></div>
+      <div class="slot-cover"></div>
+      <div class="screen">Insert Card</div>
+      <div class="keypad">
+        <div class="key">1</div>
+        <div class="key">2</div>
+        <div class="key">3</div>
+        <div class="key">4</div>
+        <div class="key">5</div>
+        <div class="key">6</div>
+        <div class="key">7</div>
+        <div class="key">8</div>
+        <div class="key">9</div>
+      </div>
     </div>
   </section>
 
@@ -229,74 +236,18 @@
       <p>⚡ Get 5% Cashback on every purchase</p>
       <p>🚀 Complimentary Space Lounge Access</p>
       <p>🌌 Dining Discounts up to 20%</p>
-      <a href="#" class="cta-btn">Apply Now</a>
+      <button class="cta">Apply Now</button>
     </div>
   </section>
 
   <footer>
-    © 2025 FuturePay. All Rights Reserved.
+    <button id="backToTop">⬆ Back to Top</button>
   </footer>
-
-  <button class="back-to-top">↑</button>
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Particle background
-    const canvas = document.getElementById("bgCanvas");
-    const ctx = canvas.getContext("2d");
-    let particles = [];
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * 2;
-        this.speedY = Math.random() * 0.5 + 0.2;
-      }
-      update() {
-        this.y += this.speedY;
-        if (this.y > canvas.height) {
-          this.y = 0;
-          this.x = Math.random() * canvas.width;
-        }
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#0ff";
-        ctx.fill();
-      }
-    }
-
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < 120; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
-    }
-
-    initParticles();
-    animateParticles();
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    });
-
-    // Card enters on scroll
+    // Card enters smoothly
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".card",
@@ -308,31 +259,30 @@
       duration: 1
     });
 
-    // Card moves towards machine slot
+    // Card aligns with slot
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
-        start: "top 75%",
+        start: "top 80%",
         toggleActions: "play none none reverse"
       },
       y: -60,
       duration: 1
     });
 
-    // Card inserts into slot (half disappear)
+    // Card slides half into slot
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
         start: "top 60%",
         toggleActions: "play none none reverse"
       },
-      y: -30,
-      opacity: 0.2,
-      scale: 0.95,
-      duration: 1
+      y: -90,
+      duration: 1,
+      ease: "power1.inOut"
     });
 
-    // Reveal offers
+    // Reveal offers with card reappearing
     gsap.to(".offers", {
       scrollTrigger: {
         trigger: ".offers",
@@ -343,20 +293,7 @@
       y: 0,
       duration: 1
     });
-
-    // Back to top button logic
-    const backToTopBtn = document.querySelector(".back-to-top");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > window.innerHeight / 2) {
-        backToTopBtn.style.display = "flex";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
-    });
-
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
   </script>
+
 </body>
 </html>
