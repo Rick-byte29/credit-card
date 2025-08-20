@@ -31,6 +31,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      position: relative;
     }
 
     .card {
@@ -47,7 +48,7 @@
       transform: translateY(200px);
       opacity: 0;
       position: absolute;
-      z-index: 2;
+      z-index: 5;
     }
 
     .chip {
@@ -76,6 +77,7 @@
       align-items: center;
       padding-top: 60px;
       overflow: hidden;
+      z-index: 2;
     }
 
     .slot {
@@ -96,7 +98,7 @@
       height: 15px;
       background: #111;
       border-radius: 3px;
-      z-index: 4;
+      z-index: 6;
       box-shadow: inset 0 0 10px #000;
     }
 
@@ -247,7 +249,7 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Card enters smoothly
+    // Card enters from below
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".card",
@@ -259,27 +261,40 @@
       duration: 1
     });
 
-    // Card aligns with slot
+    // Move card towards slot
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none reverse"
       },
-      y: -60,
-      duration: 1
+      x: 0,
+      y: -180,
+      duration: 1,
+      ease: "power2.inOut"
     });
 
-    // Card slides half into slot
+    // Card goes half inside machine slot
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
-        start: "top 60%",
+        start: "top 65%",
         toggleActions: "play none none reverse"
       },
-      y: -90,
-      duration: 1,
-      ease: "power1.inOut"
+      y: -210,
+      duration: 1.2,
+      ease: "power2.inOut"
+    });
+
+    // Hide card inside machine
+    gsap.to(".card", {
+      scrollTrigger: {
+        trigger: ".machine",
+        start: "top 40%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 0,
+      duration: 0.8
     });
 
     // Reveal offers with card reappearing
