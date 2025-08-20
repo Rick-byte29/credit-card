@@ -249,7 +249,7 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Card enters from below
+    // Step 1: Card enters from below
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".card",
@@ -261,44 +261,50 @@
       duration: 1
     });
 
-    // Move card towards slot
+    // Step 2: Move card into slot horizontally like a real insert
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
-        start: "top 85%",
+        start: "top 80%",
         toggleActions: "play none none reverse"
       },
-      x: 0,
-      y: -180,
-      duration: 1,
-      ease: "power2.inOut"
-    });
-
-    // Card goes half inside machine slot
-    gsap.to(".card", {
-      scrollTrigger: {
-        trigger: ".machine",
-        start: "top 65%",
-        toggleActions: "play none none reverse"
-      },
-      y: -210,
+      x: 50, // slide card right into slot
+      y: -100, // align with slot
       duration: 1.2,
       ease: "power2.inOut"
     });
 
-    // Hide card inside machine
+    // Step 3: Card goes half inside machine slot
+    gsap.to(".card", {
+      scrollTrigger: {
+        trigger: ".machine",
+        start: "top 60%",
+        toggleActions: "play none none reverse"
+      },
+      x: 130, // half inside slot
+      y: -100,
+      duration: 1.2,
+      ease: "power2.inOut"
+    });
+
+    // Step 4: Hide card inside machine fully
     gsap.to(".card", {
       scrollTrigger: {
         trigger: ".machine",
         start: "top 40%",
         toggleActions: "play none none reverse"
       },
+      x: 200,
       opacity: 0,
-      duration: 0.8
+      duration: 0.8,
+      ease: "power2.inOut"
     });
 
-    // Reveal offers with card reappearing
-    gsap.to(".offers", {
+    // Step 5: Reveal offers with card reappearing
+    gsap.fromTo(".offers", {
+      opacity: 0,
+      y: 50
+    }, {
       scrollTrigger: {
         trigger: ".offers",
         start: "top 80%",
